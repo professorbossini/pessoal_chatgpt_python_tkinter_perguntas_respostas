@@ -19,3 +19,17 @@ def criar_pergunta(
     max_tokens=150
   )
   return resposta.choices[0].text.strip()
+
+
+def responder_pergunta(
+    OPENAI_API_KEY,
+    pergunta_a_ser_respondida
+):
+  openai.api_key = OPENAI_API_KEY
+  prompt = f'Responda a seguinte pergunta:{pergunta_a_ser_respondida}'
+  resposta = openai.Completion.create(
+    engine='text-davinci-003',
+    prompt = prompt,
+    max_tokens = 150
+  )
+  return resposta.choices[0].text.strip()
