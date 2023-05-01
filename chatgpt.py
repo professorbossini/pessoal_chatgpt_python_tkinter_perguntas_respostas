@@ -19,13 +19,3 @@ def criar_pergunta(
     max_tokens=150
   )
   return resposta.choices[0].text.strip()
-
-
-print(
-  criar_pergunta(
-    'java',
-    'objetiva',
-    'médio',
-    
-  )
-)

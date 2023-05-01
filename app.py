@@ -1,5 +1,13 @@
 import os
 from dotenv import load_dotenv
+import chatgpt
 load_dotenv()
-#exibindo o valor associado à chave OPENAI_API_KEY
-#print (os.getenv('OPENAI_API_KEY'))
+OPENAI_API_KEY = os.getenv('OPENAI_API_KEY')
+print(
+    chatgpt.criar_pergunta(
+      OPENAI_API_KEY,
+      'java',
+      'alternativa',
+      'médio'
+    )
+)
