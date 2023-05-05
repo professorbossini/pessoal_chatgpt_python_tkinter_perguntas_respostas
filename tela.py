@@ -29,7 +29,7 @@ def criar_aba1(notebook, criar_pergunta):
 
   #linha 4
   pergunta_exemplo = tk.Text(tab1)
-  #40 linhas de texto
+  #20 linhas de texto
   pergunta_exemplo.configure(height=20)
   pergunta_exemplo.grid(row=4, column=0, columnspan=4, sticky='WE', padx=5, pady=5)
   
@@ -38,20 +38,18 @@ def criar_aba1(notebook, criar_pergunta):
   tk.Label(tab1, text='Resposta:').grid(row=5, column=0, sticky='W', padx=5, pady=5)
 
    #linha 6
-  resposta_text = tk.Text(tab1, state='disabled')
-  #40 linhas de texto
+  resposta_text = tk.Text(tab1)
+  #20 linhas de texto
   resposta_text.configure(height=20)
   resposta_text.grid(row=6, column=0, columnspan=4, sticky='WE', padx=5, pady=5)
 
-
-    # resposta = criar_pergunta(assunto_entry.get(), tipo_var.get(), dificuldade_var.get(), pergunta_exemplo.get('1.0', 'end'))
-    # resposta_text.set(resposta)
-
   #linha 7
   def executar():
+    #num Text TKinter '1.0' representa número da linha (começa do 1) e da coluna (começa do zero)
+    #limpamos para casos de perguntas anteriores
+    resposta_text.delete("1.0", 'end')
     print('executar')
     resposta = criar_pergunta(assunto_entry.get(), tipo_var.get(), dificuldade_var.get(), pergunta_exemplo.get('1.0', 'end'))
-    print (resposta)
     resposta_text.insert("1.0", resposta)
 
   ok_button = tk.Button(tab1, text='OK', command=executar)
