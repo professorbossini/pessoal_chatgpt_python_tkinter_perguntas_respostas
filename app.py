@@ -14,4 +14,9 @@ def criar_pergunta(assunto, tipo, dificuldade, pergunta_exemplo):
         pergunta_exemplo
     )
 
-tela.criar_tela(criar_pergunta)
+def responder_pergunta (pergunta_a_ser_respondida):
+    return chatgpt.responder_pergunta(
+        OPENAI_API_KEY,
+        pergunta_a_ser_respondida
+    )
+tela.criar_tela(criar_pergunta, responder_pergunta)

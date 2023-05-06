@@ -1,6 +1,40 @@
 import tkinter as tk
 from tkinter import ttk
 
+def criar_aba2 (notebook, responder_pergunta):
+  tab2 = ttk.Frame(notebook)
+  notebook.add(tab2, text='Responder pergunta')
+  #linha 0
+  tk.Label(tab2, text='Escreva aqui a sua pergunta:').grid(row=0, column=0, sticky='W', padx=5, pady=0)
+  #linha 1
+  pergunta_text = tk.Text(tab2)
+  #20 linhas de texto
+  pergunta_text.configure(height=20)
+  pergunta_text.grid(row=1, column=0, sticky='WEN', padx=5, pady=0)
+
+  #linha 2
+  tk.Label(tab2, text='Eis a resposta do ChatGPT:').grid(row=2, column=0, sticky='W', padx=5, pady=0)
+  #linha 3
+  resposta_text = tk.Text(tab2)
+  #20 linhas de texto
+  resposta_text.configure(height=20)
+  resposta_text.grid(row=3, column=0, sticky='WEN', padx=5, pady=0)
+
+  #linha 4
+  def executar():
+    resposta = responder_pergunta( pergunta_text.get('1.0', 'end'))
+    resposta_text.delete('1.0', 'end')
+    resposta_text.insert('1.0', resposta)
+  ok_button = tk.Button(tab2, text='OK', command=executar)
+  ok_button.grid(row=4, column=0, sticky='WE', padx=5, pady=5)
+
+
+  #peso 1 para cada linha conforme o usuário expande
+  for i in range(4):  # para 5 linhas (0-4)
+    tab2.grid_rowconfigure(i, weight=1)  # expande com peso 1
+  #peso 1 para cada coluna conforme o usuário expande
+  tab2.grid_columnconfigure(0, weight=1)
+
 #função para criar a primeira aba
 def criar_aba1(notebook, criar_pergunta):
   tab1 = ttk.Frame(notebook)
@@ -64,7 +98,7 @@ def criar_aba1(notebook, criar_pergunta):
 
 
 
-def criar_tela(criar_pergunta):
+def criar_tela(criar_pergunta, responder_pergunta):
   window = tk.Tk()
   window.title('ChatGPT - Gerador/Corretor de Questões')
   window.minsize(800, 600)
@@ -73,5 +107,7 @@ def criar_tela(criar_pergunta):
 
   #cria a primeir aba
   tab1 = criar_aba1(notebook, criar_pergunta)
+  #cria a segunda aba
+  tab2 = criar_aba2(notebook, responder_pergunta)
   notebook.pack(expand=True, fill='both')
   window.mainloop()
